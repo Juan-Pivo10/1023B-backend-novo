@@ -32,7 +32,7 @@ const conn = await mysql.createConnection({
         database: process.env.DBDATABASE,
         port: Number(process.env.DBPORT)
     })
-    res.send(process.env.DBHOST)
+    res.send("Conectado ao banco!")
 }
      catch (err) {
         if (err instanceof Error === false) {
