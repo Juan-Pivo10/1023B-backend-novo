@@ -72,9 +72,7 @@ app.get('/produtos', async(req, res) => {
             database: process.env.DBDATABASE,
             port: Number(process.env.DBPORT)
         })
-        res.send("Conectado ao banco!")
 
-        
         const [rows] = await conn.query('SELECT * FROM produtos')
         res.json(rows)
     } catch (err) {
