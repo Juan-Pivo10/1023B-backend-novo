@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { db } from '../database/banco-mongo'
+import { db } from '../database/banco-mongo.js'
 class ProdutosController {
     async adicionar(req: Request, res: Response) {
         const { nome, preco, urlfoto, descricao } = req.body
@@ -15,4 +15,4 @@ class ProdutosController {
         res.status(200).json(produtos)
     }
 }
-export default ProdutosController
+export default new ProdutosController()

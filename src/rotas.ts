@@ -1,18 +1,16 @@
 import {Router} from 'express'
 
-import CarrinhoController from './carrinho/carrinho.constroller'
-import ProdutosController from './produtos/produtos.controller'
+import carrinhoController from './carrinho/carrinho.controller.js'
+import produtosController from './produtos/produtos.controller.js'
 
-const carrinhoController = new CarrinhoController()
-const produtoController = new ProdutosController()
 
 const rotas = Router()
 
-rotas.get('/carrinho', carrinhoController.listar)
-rotas.post('/carrinho', carrinhoController.adicionar)
+rotas.get('/carrinho', carrinhoController.listarItem)
+rotas.post('/carrinho', carrinhoController.adicionarItem)
 
 // Rotas dos produtos
-rotas.get('/produtos', produtoController.listar)
-rotas.post('/produtos', produtoController.adicionar)
+rotas.get('/produtos', produtosController.listar)
+rotas.post('/produtos', produtosController.adicionar)
 
 export default rotas
