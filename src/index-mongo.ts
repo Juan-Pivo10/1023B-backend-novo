@@ -1,19 +1,27 @@
-import express, { Request, Response } from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 import 'dotenv/config'
 import { MongoClient } from 'mongodb'
-
 import rotas from './rotas.js'
 
 const client = new MongoClient(process.env.MONGO_URI!)
 await client.connect()
+
 const db = client.db(process.env.MONGO_DB!)
 
 const app = express()
 //Esse middleware faz com que o express faça parte do body da requisição para json
+
+//Meu primeiro middleware
+function middleware1(req: Request, res: Response, next:NextFunction) {
+    console.log('Passei no middleware 1')
+    next() //chama o próximo middleware
+}
+
+
 app.use(express.json())
 
 //Usando as rotas definidas em rotas.ts
-app.use('/', rotas)
+app.use(rotas)
 
 // Criando o servidor na porta 8000 com express
 app.listen(8000, () => {

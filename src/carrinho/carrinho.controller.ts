@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { db } from '../database/banco-mongo.js'
+import { ObjectId } from "mongodb";
 
 interface ItemCarrinho {
     produtoId: string;
@@ -23,7 +24,7 @@ class CarrinhoController {
         }
 
         // Buscar o produto no banco de dados
-        const produto = await db.collection("produtos").findOne({ _id: produtoId });
+        const produto = await db.collection("produtos").findOne({ _id: ObjectId.createFromHexString(produtoId)});
         if (!produto) {
             return res.status(404).json({ error: "Produto não encontrado" });
         }
@@ -58,12 +59,7 @@ class CarrinhoController {
 
         return res.status(201).json(carrinho);
     }
-     // Se existir, deve adicionar o item ao carrinho existente
-     
 
-        // Calcular o total do carrinho
-
-        // Atualizar a data de atualização do carrinho
 
 
 
